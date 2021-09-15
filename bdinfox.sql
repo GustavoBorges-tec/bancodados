@@ -58,3 +58,38 @@ select * from usuarios;
 
 -- comando usado para remover uma tabela
 drop table usuarios;
+
+
+-- Tabela de clientes (clientes da assistência técnica)
+create table clientes(
+idcli int primary key auto_increment,
+nome varchar(50) not null,
+fone varchar(15) not null
+);
+
+describe clientes;
+
+-- Tabela de ordem de serviços
+create table tbOs(
+os int primary key auto_increment, 
+equipamento varchar (250) not null,
+defeito varchar (250) not null,
+dataOs timestamp default current_timestamp,
+statusOs varchar (50) not null,
+valor decimal (10,2) not null,
+idcli int not null,
+foreign key(idcli) references clientes (idcli)
+);
+
+insert into clientes (nome,fone) values('Kelly Cristina','31256-2222');
+insert into clientes (nome,fone) values('José de Assis','91234-1111');
+
+insert into tbOs(equipamento,defeito,statusOs,valor,idcli)
+values('Notebook Lenovo modelo','Não liga','Orçamento',80,1);
+
+insert into tbOs(equipamento,defeito,statusOs,valor,idcli)
+values('PC Positivo','Formatação do Windows','Aprovado',80,2);
+
+select * from tbOs;
+
+select * from clientes;
